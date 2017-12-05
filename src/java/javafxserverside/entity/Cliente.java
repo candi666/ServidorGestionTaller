@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
@@ -19,12 +21,31 @@ import javax.persistence.OneToMany;
  * @author 2dam
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(
+        name="findAllClientes",
+        query="SELECT c FROM Cliente c"
+    ),
+    @NamedQuery(
+        name="findClienteById",
+        query="SELECT c FROM Cliente c WHERE c.id=:id"
+    ),
+    @NamedQuery(
+        name="findClienteByDni",
+        query="SELECT c FROM Cliente c WHERE c.dni=:dni"
+    ),
+    @NamedQuery(
+        name="findClienteByNombre",
+        query="SELECT c FROM Cliente c WHERE c.nombre=:nombre"
+    )
+})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String dni;
     private String nombre;
     private String apellidos;
     private String telefono;
@@ -37,6 +58,13 @@ public class Cliente implements Serializable {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+    
+    public String getDni() {
+        return dni;
+    }
+    public void setDni(String dni) {
+        this.dni = dni;
     }
     
     public String getNombre() {
