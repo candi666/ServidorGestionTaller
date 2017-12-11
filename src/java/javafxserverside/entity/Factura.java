@@ -11,8 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -22,8 +24,16 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries({
     @NamedQuery(
-        name="findAllFacturas",
-        query="SELECT f FROM Factura f"
+            name = "getAllFacturas",
+            query = "SELECT f FROM Factura f"
+    ),
+    @NamedQuery(
+            name = "getFacturaById",
+            query = "SELECT f FROM Factura f WHERE f.id=:id"
+    ),
+    @NamedQuery(
+            name = "getFacturasByCliente",
+            query = "SELECT f FROM Factura f WHERE f.cliente.id=:id"
     )
 })
 public class Factura implements Serializable {
@@ -38,17 +48,21 @@ public class Factura implements Serializable {
     private Boolean pagada;
     @OneToOne
     private Reparacion reparacion;
+    @ManyToOne
+    private Cliente cliente;
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Date getFecha() {
         return fecha;
     }
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -60,17 +74,19 @@ public class Factura implements Serializable {
     public void setFechavenc(Date fechavenc) {
         this.fechavenc = fechavenc;
     }
-    
+
     public Float getTotal() {
         return total;
     }
+
     public void setTotal(Float total) {
         this.total = total;
     }
-    
+
     public Boolean getPagada() {
         return pagada;
     }
+
     public void setPagada(Boolean pagada) {
         this.pagada = pagada;
     }
@@ -78,11 +94,18 @@ public class Factura implements Serializable {
     public Reparacion getReparacion() {
         return reparacion;
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public void setReparacion(Reparacion reparacion) {
         this.reparacion = reparacion;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -108,5 +131,5 @@ public class Factura implements Serializable {
     public String toString() {
         return "javafxserverside.entity.Factura[ id=" + id + " ]";
     }
-    
+
 }
