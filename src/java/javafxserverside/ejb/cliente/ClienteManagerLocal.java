@@ -15,11 +15,11 @@ import javax.ejb.Local;
  * @author 2dam
  */
 @Local
-public interface ClienteBeanLocal {
+public interface ClienteManagerLocal {
+    
+    public Cliente getClientesById(Integer id) throws ClienteQueryException;
     
     public List<Cliente> getAllClientes() throws ClienteQueryException;
-    
-    public List<Cliente> getClientesById(Integer id) throws ClienteQueryException;
     
     public List<Cliente> getClientesByDni(String dni) throws ClienteQueryException;
     
