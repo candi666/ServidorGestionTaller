@@ -16,26 +16,26 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author 2dam
  */
 @Entity
+@Table(name="factura",schema="dindb")
 @NamedQueries({
     @NamedQuery(
             name = "getAllFacturas",
             query = "SELECT f FROM Factura f"
     ),
     @NamedQuery(
-            name = "getFacturaById",
-            query = "SELECT f FROM Factura f WHERE f.id=:id"
-    ),
-    @NamedQuery(
             name = "getFacturasByCliente",
             query = "SELECT f FROM Factura f WHERE f.cliente.id=:id"
     )
 })
+@XmlRootElement
 public class Factura implements Serializable {
 
     private static final long serialVersionUID = 1L;

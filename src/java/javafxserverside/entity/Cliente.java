@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,6 +41,7 @@ import javax.persistence.OneToMany;
         query="SELECT c FROM Cliente c WHERE c.nombre=:nombre"
     )
 })
+@XmlRootElement
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -95,6 +98,7 @@ public class Cliente implements Serializable {
         this.email = email;
     }
     
+    @XmlTransient
     public Collection<Reparacion> getReparacion() {
         return reparacion;
     }

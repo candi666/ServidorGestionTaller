@@ -16,7 +16,7 @@ public class FacturasDataException extends Exception {
      * detail message.
      */
     public FacturasDataException() {
-        super("Datos de factura inválidos.");
+        super("Invalid factura data.");
     }
 
     /**
