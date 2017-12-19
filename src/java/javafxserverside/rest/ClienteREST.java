@@ -57,6 +57,7 @@ public class ClienteREST {
     @Path("{id}")
     public void delete(@PathParam("id") Integer id) {
         try{
+            LOGGER.log(Level.INFO,"ClienteREST: buscar por id");
             Cliente cliente=ejb.getClientesById(id);
             LOGGER.log(Level.INFO,"ClienteREST: delete {0}.",id);
             ejb.deleteClient(cliente);
@@ -93,8 +94,9 @@ public class ClienteREST {
     }
     
     @GET
+    @Path("{nombre}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findByName(@QueryParam("nombre") String nombre) {
+    public List<Cliente> findByName(@PathParam("nombre") String nombre) {
         List <Cliente> clientes=null;
         try{
             LOGGER.log(Level.INFO,"ClienteREST: find clientes by name");
@@ -106,8 +108,9 @@ public class ClienteREST {
     }
     
     @GET
+    @Path("{dni}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findByDni(@QueryParam("dni") String dni) {
+    public List<Cliente> findByDni(@PathParam("dni") String dni) {
         List <Cliente> clientes=null;
         try{
             LOGGER.log(Level.INFO,"ClienteREST: find clientes by dni");

@@ -31,11 +31,11 @@ import javax.xml.bind.annotation.XmlTransient;
     ),
     @NamedQuery(
         name="findClienteByDni",
-        query="SELECT c FROM Cliente c WHERE c.dni=:dni"
+        query="SELECT c FROM Cliente c WHERE c.dni = :dni"
     ),
     @NamedQuery(
         name="findClienteByNombre",
-        query="SELECT c FROM Cliente c WHERE c.nombre=:nombre"
+        query="SELECT c FROM Cliente c WHERE c.nombre = :nombre"
     )
 })
 @XmlRootElement
