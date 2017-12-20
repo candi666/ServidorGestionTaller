@@ -9,8 +9,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- *
- * @author 2dam
+ * @author Carlos, Ionut
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -29,7 +28,12 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        //resources.add(javafxserverside.rest.ClienteFacadeREST.class);
         resources.add(javafxserverside.rest.ClienteREST.class);
+        //resources.add(javafxserverside.rest.ReparacionFacadeREST.class);
+        resources.add(javafxserverside.rest.FacturaREST.class);
+        resources.add(javafxserverside.rest.ReparacionFacadeREST.class);
+
     }
     
 }
