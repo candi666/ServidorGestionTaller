@@ -94,7 +94,7 @@ public class ClienteREST {
     }
     
     @GET
-    @Path("{nombre}")
+    @Path("nombre/{nombre}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findByName(@PathParam("nombre") String nombre) {
         List <Cliente> clientes=null;
@@ -108,7 +108,7 @@ public class ClienteREST {
     }
     
     @GET
-    @Path("{dni}")
+    @Path("dni/{dni}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findByDni(@PathParam("dni") String dni) {
         List <Cliente> clientes=null;

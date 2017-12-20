@@ -32,12 +32,12 @@ public class ClienteManager implements ClienteManagerLocal {
 
     @Override
     public List<Cliente> getClientesByDni(String dni) throws ClienteQueryException{
-        return em.createNamedQuery("findClienteByDni").setParameter("id",dni).getResultList();
+        return em.createNamedQuery("findClienteByDni").setParameter("dni",dni).getResultList();
     }
 
     @Override
     public List<Cliente> getClientesByNombre(String nombre) throws ClienteQueryException{
-        return em.createNamedQuery("findClienteByNombre").setParameter("id",nombre).getResultList();
+        return em.createNamedQuery("findClienteByNombre").setParameter("nombre",nombre).getResultList();
     }
 
     @Override
