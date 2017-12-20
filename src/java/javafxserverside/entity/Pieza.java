@@ -34,8 +34,8 @@ public class Pieza implements Serializable {
     private Integer id;
     private String descripcion;
     private String fabricante;
-    @ManyToMany(mappedBy="pieza")
-    private Reparacion reparacion;
+    @ManyToMany
+    private Collection<Reparacion> reparaciones;
 
     public Integer getId() {
         return id;
@@ -58,11 +58,11 @@ public class Pieza implements Serializable {
         this.fabricante = fabricante;
     }
 
-    public Reparacion getReparacion() {
-        return reparacion;
+    public Collection<Reparacion> getReparaciones() {
+        return reparaciones;
     }
-    public void setReparacion(Reparacion reparacion) {
-        this.reparacion = reparacion;
+    public void setReparaciones(Collection<Reparacion> reparaciones) {
+        this.reparaciones = reparaciones;
     }
 
     

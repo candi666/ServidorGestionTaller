@@ -11,10 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -23,22 +24,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author 2dam
  */
 @Entity
+@Table(name="cliente", schema="dindb")
 @NamedQueries({
     @NamedQuery(
         name="findAllClientes",
         query="SELECT c FROM Cliente c"
     ),
     @NamedQuery(
-        name="findClienteById",
-        query="SELECT c FROM Cliente c WHERE c.id=:id"
-    ),
-    @NamedQuery(
         name="findClienteByDni",
-        query="SELECT c FROM Cliente c WHERE c.dni=:dni"
+        query="SELECT c FROM Cliente c WHERE c.dni = :dni"
     ),
     @NamedQuery(
         name="findClienteByNombre",
-        query="SELECT c FROM Cliente c WHERE c.nombre=:nombre"
+        query="SELECT c FROM Cliente c WHERE c.nombre = :nombre"
     )
 })
 @XmlRootElement
