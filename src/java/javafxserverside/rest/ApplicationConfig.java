@@ -29,8 +29,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         //resources.add(javafxserverside.rest.ClienteFacadeREST.class);
-        resources.add(javafxserverside.rest.ClienteREST.class);
+        resources.add(javafxserverside.rest.ClienteFacadeREST.class);
         //resources.add(javafxserverside.rest.ReparacionFacadeREST.class);
+        resources.add(javafxserverside.rest.ClienteREST.class);
         resources.add(javafxserverside.rest.FacturaREST.class);
         resources.add(javafxserverside.rest.ReparacionFacadeREST.class);
 
