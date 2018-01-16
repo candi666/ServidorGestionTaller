@@ -140,7 +140,7 @@ public class FacturaREST {
      * @return Facturas list matching the date range.
      */
     @GET
-    @Path("{daterange}")
+    @Path("daterange/{daterange}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Factura> findByDate(
             @PathParam("fromDate") Date fromDate, @PathParam("toDate") Date toDate) {
@@ -178,7 +178,7 @@ public class FacturaREST {
      * @return Facturas list associated to client.
      */
     @GET
-    @Path("{id}")
+    @Path("cliente/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Factura> findByCliente(@PathParam("id") int id) {
         List facturasList= new ArrayList();
