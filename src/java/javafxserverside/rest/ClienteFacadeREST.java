@@ -62,26 +62,26 @@ public class ClienteFacadeREST extends AbstractFacade<Cliente> {
         return super.find(id);
     }
 
-    @GET
-    @Override
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findAll() {
-        return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
+//    @GET
+//    @Override
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public List<Cliente> findAll() {
+//        return super.findAll();
+//    }
+//
+//    @GET
+//    @Path("{from}/{to}")
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public List<Cliente> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+//        return super.findRange(new int[]{from, to});
+//    }
+//
+//    @GET
+//    @Path("count")
+//    @Produces(MediaType.TEXT_PLAIN)
+//    public String countREST() {
+//        return String.valueOf(super.count());
+//    }
 
     @Override
     protected EntityManager getEntityManager() {

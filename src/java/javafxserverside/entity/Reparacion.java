@@ -44,8 +44,8 @@ public class Reparacion implements Serializable {
     private String descripcion;
     @ManyToOne
     private Cliente cliente;
-    @ManyToMany(mappedBy="reparacion")
-    private Collection<Pieza> pieza;
+    @ManyToMany(mappedBy="reparaciones")
+    private Collection<Pieza> piezas;
     
 
     public Integer getId() {
@@ -92,10 +92,10 @@ public class Reparacion implements Serializable {
 
     @XmlTransient
     public Collection<Pieza> getPieza() {
-        return pieza;
+        return piezas;
     }
     public void setPieza(Collection<Pieza> pieza) {
-        this.pieza = pieza;
+        this.piezas = pieza;
     }
 
     @Override
