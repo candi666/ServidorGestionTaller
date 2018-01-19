@@ -14,8 +14,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
- * @author 2dam
+ * EJB class for managing Cliente entity CRUD operations.
+ * @author ionut
  */
 @Stateless
 public class ClienteManager implements ClienteManagerLocal {
@@ -24,26 +24,59 @@ public class ClienteManager implements ClienteManagerLocal {
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * Get all Clientes.
+     *
+     * @return clientes collection
+     * @throws ClienteQueryException
+     */
     @Override
     public List<Cliente> getAllClientes() throws ClienteQueryException{
         return em.createNamedQuery("findAllClientes").getResultList();
     }
     
+     /**
+     * Get Cliente by id. 
+     *
+     * @param id 
+     * @return cliente with matching id
+     * @throws ClienteQueryException
+     */
     @Override
     public Cliente getClientesById(Integer id) throws ClienteQueryException{
         return em.find(Cliente.class, id);
     }
 
+    /**
+     * Get Cliente by dni.
+     *
+     * @param dni 
+     * @return cliente with matching dni
+     * @throws ClienteQueryException
+     */
     @Override
     public List<Cliente> getClientesByDni(String dni) throws ClienteQueryException{
         return em.createNamedQuery("findClienteByDni").setParameter("dni",dni).getResultList();
     }
 
+    /**
+     * Get Cliente by nombre 
+     *
+     * @param nombre  
+     * @return cliente with matching nombre
+     * @throws ClienteQueryException
+     */
     @Override
     public List<Cliente> getClientesByNombre(String nombre) throws ClienteQueryException{
         return em.createNamedQuery("findClienteByNombre").setParameter("nombre",nombre).getResultList();
     }
 
+    /**
+     * Create new Cliente.
+     *
+     * @param cliente new cliente
+     * @throws ClienteCreateException
+     */
     @Override
     public void createClient(Cliente cliente) throws ClienteCreateException {
         LOGGER.info("ClienteManager: Creating cliente.");
@@ -59,6 +92,12 @@ public class ClienteManager implements ClienteManagerLocal {
         LOGGER.info("ClienteCreateException: Cliente created");
     }
 
+    /**
+     * Update Cliente values.
+     *
+     * @param cliente to update 
+     * @throws ClienteUpdateException 
+     */
     @Override
     public void updateClient(Cliente cliente) throws ClienteUpdateException {
         LOGGER.info("ClienteManager: Updating cliente.");
@@ -71,6 +110,12 @@ public class ClienteManager implements ClienteManagerLocal {
         LOGGER.info("ClienteUpdateException: Cliente updated");
     }
 
+    /**
+     * Delete Cliente by id.
+     *
+     * @param cliente 
+     * @throws ClienteDeleteException 
+     */
     @Override
     public void deleteClient(Cliente cliente) throws ClienteDeleteException {
         LOGGER.info("ClienteManager: Deleting cliente.");

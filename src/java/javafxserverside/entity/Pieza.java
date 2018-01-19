@@ -14,12 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  *
  * @author 2dam
  */
 @Entity
+@Table(name="pieza", schema="dindb")
 @NamedQueries({
     @NamedQuery(
         name="findAllPiezas",

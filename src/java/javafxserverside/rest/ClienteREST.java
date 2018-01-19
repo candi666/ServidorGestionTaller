@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javafxserverside.rest;
 
 import java.util.List;
@@ -11,6 +6,9 @@ import java.util.logging.Logger;
 import javafxserverside.ejb.cliente.ClienteManagerLocal;
 import javafxserverside.entity.Cliente;
 import javafxserverside.exception.cliente.ClienteQueryException;
+import javafxserverside.exception.cliente.ClienteCreateException;
+import javafxserverside.exception.cliente.ClienteUpdateException;
+import javafxserverside.exception.cliente.ClienteDeleteException;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -22,6 +20,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+/**
+ * REST Class for Clientes
+ * 
+ * @author ionut
+ */
 @Path("cliente")
 public class ClienteREST {
     private static final Logger LOGGER = Logger.getLogger("javafxserverside");
@@ -29,29 +32,40 @@ public class ClienteREST {
     @EJB
     private ClienteManagerLocal ejb;
 
+    /**
+     * Creates Cliente
+     * @param cliente to create.
+     */
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void create(Cliente cliente) {
         try{
             LOGGER.log(Level.INFO,"ClienteREST: create {0}.",cliente);
             ejb.createClient(cliente);
-        }catch(Exception e){
+        }catch(ClienteCreateException e){
             LOGGER.log(Level.SEVERE, null, e);
         }
     }
 
+    /**
+     * Update Cliente
+     * @param cliente to update.
+     */
     @PUT
-    @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public void update(Cliente cliente) {
         try{
             LOGGER.log(Level.INFO,"ClienteREST: update {0}.",cliente);
             ejb.updateClient(cliente);
-        }catch(Exception e){
+        }catch(ClienteUpdateException e){
             LOGGER.log(Level.SEVERE, null, e);
         }
     }
 
+    /**
+     * Delete Cliente by id
+     * @param id cliente to delete.
+     */
     @DELETE
     @Path("{id}")
     public void delete(@PathParam("id") Integer id) {
@@ -60,11 +74,16 @@ public class ClienteREST {
             Cliente cliente=ejb.getClientesById(id);
             LOGGER.log(Level.INFO,"ClienteREST: delete {0}.",id);
             ejb.deleteClient(cliente);
-        }catch(Exception e){
+        }catch(ClienteQueryException | ClienteDeleteException e){
             LOGGER.log(Level.SEVERE, null, e);
         }
     }
 
+    /**
+     * Find Cliente by id.
+     * @param id cliente id
+     * @return cliente matching the given id.
+     */
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -79,6 +98,10 @@ public class ClienteREST {
         return cliente;
     }
 
+    /**
+     * Finds all Clientes.
+     * @return complete cliente list
+     */
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Cliente> findAll() {
@@ -92,6 +115,11 @@ public class ClienteREST {
         return clientes;
     }
     
+    /**
+     * Find clientes by nombre.
+     * @param nombre Cliente nombre
+     * @return Clientes by nombre.
+     */
     @GET
     @Path("nombre/{nombre}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -106,6 +134,11 @@ public class ClienteREST {
         return clientes;
     }
     
+    /**
+     * Find clientes by dni.
+     * @param dni Cliente dni
+     * @return Clientes by dni.
+     */
     @GET
     @Path("dni/{dni}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})

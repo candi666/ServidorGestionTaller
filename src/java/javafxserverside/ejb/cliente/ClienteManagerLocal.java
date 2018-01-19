@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javafxserverside.ejb.cliente;
 
 import java.util.List;
@@ -14,8 +9,9 @@ import javafxserverside.exception.cliente.ClienteDeleteException;
 import javax.ejb.Local;
 
 /**
- *
- * @author 2dam
+ * Cliente Interface
+ * 
+ * @author ionut
  */
 @Local
 public interface ClienteManagerLocal {
